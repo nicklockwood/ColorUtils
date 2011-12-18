@@ -1,0 +1,309 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01260108149D6DA700D31467 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01260107149D6DA700D31467 /* UIKit.framework */; };
+		0126010A149D6DA700D31467 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01260109149D6DA700D31467 /* Foundation.framework */; };
+		0126010C149D6DA700D31467 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0126010B149D6DA700D31467 /* CoreGraphics.framework */; };
+		01260112149D6DA700D31467 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01260110149D6DA700D31467 /* InfoPlist.strings */; };
+		01260114149D6DA700D31467 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01260113149D6DA700D31467 /* main.m */; };
+		01260118149D6DA800D31467 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01260117149D6DA800D31467 /* AppDelegate.m */; };
+		0126011B149D6DA800D31467 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0126011A149D6DA800D31467 /* ViewController.m */; };
+		0126011E149D6DA800D31467 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0126011C149D6DA800D31467 /* ViewController_iPhone.xib */; };
+		01260121149D6DA800D31467 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0126011F149D6DA800D31467 /* ViewController_iPad.xib */; };
+		012B9E7F149D866700075D91 /* UIColor+ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 012B9E7E149D866700075D91 /* UIColor+ColorUtils.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		01260103149D6DA700D31467 /* ColorUtilsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorUtilsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		01260107149D6DA700D31467 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		01260109149D6DA700D31467 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0126010B149D6DA700D31467 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0126010F149D6DA700D31467 /* ColorUtilsExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ColorUtilsExample-Info.plist"; sourceTree = "<group>"; };
+		01260111149D6DA700D31467 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		01260113149D6DA700D31467 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		01260115149D6DA700D31467 /* ColorUtilsExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ColorUtilsExample-Prefix.pch"; sourceTree = "<group>"; };
+		01260116149D6DA700D31467 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		01260117149D6DA800D31467 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		01260119149D6DA800D31467 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		0126011A149D6DA800D31467 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0126011D149D6DA800D31467 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		01260120149D6DA800D31467 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		012B9E7D149D866700075D91 /* UIColor+ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorUtils.h"; sourceTree = "<group>"; };
+		012B9E7E149D866700075D91 /* UIColor+ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorUtils.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		01260100149D6DA700D31467 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01260108149D6DA700D31467 /* UIKit.framework in Frameworks */,
+				0126010A149D6DA700D31467 /* Foundation.framework in Frameworks */,
+				0126010C149D6DA700D31467 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		012600F8149D6DA700D31467 = {
+			isa = PBXGroup;
+			children = (
+				012B9E7C149D866700075D91 /* ColorUtils */,
+				0126010D149D6DA700D31467 /* ColorUtilsExample */,
+				01260106149D6DA700D31467 /* Frameworks */,
+				01260104149D6DA700D31467 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		01260104149D6DA700D31467 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				01260103149D6DA700D31467 /* ColorUtilsExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		01260106149D6DA700D31467 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				01260107149D6DA700D31467 /* UIKit.framework */,
+				01260109149D6DA700D31467 /* Foundation.framework */,
+				0126010B149D6DA700D31467 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0126010D149D6DA700D31467 /* ColorUtilsExample */ = {
+			isa = PBXGroup;
+			children = (
+				01260116149D6DA700D31467 /* AppDelegate.h */,
+				01260117149D6DA800D31467 /* AppDelegate.m */,
+				01260119149D6DA800D31467 /* ViewController.h */,
+				0126011A149D6DA800D31467 /* ViewController.m */,
+				0126011C149D6DA800D31467 /* ViewController_iPhone.xib */,
+				0126011F149D6DA800D31467 /* ViewController_iPad.xib */,
+				0126010E149D6DA700D31467 /* Supporting Files */,
+			);
+			path = ColorUtilsExample;
+			sourceTree = "<group>";
+		};
+		0126010E149D6DA700D31467 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0126010F149D6DA700D31467 /* ColorUtilsExample-Info.plist */,
+				01260110149D6DA700D31467 /* InfoPlist.strings */,
+				01260113149D6DA700D31467 /* main.m */,
+				01260115149D6DA700D31467 /* ColorUtilsExample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		012B9E7C149D866700075D91 /* ColorUtils */ = {
+			isa = PBXGroup;
+			children = (
+				012B9E7D149D866700075D91 /* UIColor+ColorUtils.h */,
+				012B9E7E149D866700075D91 /* UIColor+ColorUtils.m */,
+			);
+			name = ColorUtils;
+			path = ../../ColorUtils;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		01260102149D6DA700D31467 /* ColorUtilsExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01260124149D6DA800D31467 /* Build configuration list for PBXNativeTarget "ColorUtilsExample" */;
+			buildPhases = (
+				012600FF149D6DA700D31467 /* Sources */,
+				01260100149D6DA700D31467 /* Frameworks */,
+				01260101149D6DA700D31467 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ColorUtilsExample;
+			productName = ColorUtilsExample;
+			productReference = 01260103149D6DA700D31467 /* ColorUtilsExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		012600FA149D6DA700D31467 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 012600FD149D6DA700D31467 /* Build configuration list for PBXProject "ColorUtilsExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 012600F8149D6DA700D31467;
+			productRefGroup = 01260104149D6DA700D31467 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				01260102149D6DA700D31467 /* ColorUtilsExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		01260101149D6DA700D31467 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01260112149D6DA700D31467 /* InfoPlist.strings in Resources */,
+				0126011E149D6DA800D31467 /* ViewController_iPhone.xib in Resources */,
+				01260121149D6DA800D31467 /* ViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		012600FF149D6DA700D31467 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01260114149D6DA700D31467 /* main.m in Sources */,
+				01260118149D6DA800D31467 /* AppDelegate.m in Sources */,
+				0126011B149D6DA800D31467 /* ViewController.m in Sources */,
+				012B9E7F149D866700075D91 /* UIColor+ColorUtils.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		01260110149D6DA700D31467 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01260111149D6DA700D31467 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0126011C149D6DA800D31467 /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0126011D149D6DA800D31467 /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		0126011F149D6DA800D31467 /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01260120149D6DA800D31467 /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		01260122149D6DA800D31467 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		01260123149D6DA800D31467 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		01260125149D6DA800D31467 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ColorUtilsExample/ColorUtilsExample-Prefix.pch";
+				INFOPLIST_FILE = "ColorUtilsExample/ColorUtilsExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		01260126149D6DA800D31467 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ColorUtilsExample/ColorUtilsExample-Prefix.pch";
+				INFOPLIST_FILE = "ColorUtilsExample/ColorUtilsExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		012600FD149D6DA700D31467 /* Build configuration list for PBXProject "ColorUtilsExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01260122149D6DA800D31467 /* Debug */,
+				01260123149D6DA800D31467 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01260124149D6DA800D31467 /* Build configuration list for PBXNativeTarget "ColorUtilsExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01260125149D6DA800D31467 /* Debug */,
+				01260126149D6DA800D31467 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 012600FA149D6DA700D31467 /* Project object */;
+}
