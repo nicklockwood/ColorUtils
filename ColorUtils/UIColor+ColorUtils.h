@@ -1,7 +1,7 @@
 //
 //  UIColor+ColorUtils.h
 //
-//  Version 1.0
+//  Version 1.0.1
 //
 //  Created by Nick Lockwood on 19/11/2011.
 //  Copyright (c) 2011 Charcoal Design. All rights reserved.

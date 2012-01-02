@@ -5,7 +5,28 @@ ColorUtils is a category on UIColor that extends it with some commonly needed fe
 
 UIColor is a thin wrapper around CGColor, which supports a wide variety of different formats, making it very flexible. This flexibility seems to come at a bit of a cost to usability for common tasks however. For example, it's non-trivial to access the red, green and blue components of an RGB color, and it is difficult to compare colors because `[UIColor blackColor]` is treated as different from `[UIColor colorWithRed:0 green:0 blue:0 alpha:1]` even though they are identical on screen. ColorUtils makes this tasks easy.
 
-Another common problem is that RGBA UIColors are specified using four floating point values in the range 0 to 1, but virtually all graphics software treats colors as having integer components in the range 0 - 255, often reprasented as a hexadecimal string. ColorUtils lets you specify colors as hexadecimals so you can copy and paste values directly from PhotoShop. 
+Another common problem is that RGBA UIColors are specified using four floating point values in the range 0 to 1, but virtually all graphics software treats colors as having integer components in the range 0 - 255, often reprasented as a hexadecimal string. ColorUtils lets you specify colors as hexadecimals so you can copy and paste values directly from PhotoShop.
+
+
+Supported iOS & SDK Versions
+-----------------------------
+
+* Supported build target - iOS 5.0 (Xcode 4.2)
+* Earliest supported deployment target - iOS 4.3 (Xcode 4.2)
+* Earliest compatible deployment target - iOS 3.0
+
+NOTE: 'Supported' means that the library has been tested with this version. 'Compatible' means that the library should work on this iOS version (i.e. it doesn't rely on any unavailable SDK features) but is no longer being tested for compatibility and may require tweaking or bug fixes to run correctly.
+
+
+ARC Compatibility
+------------------
+
+ColorUtils does not use automatic reference counting, but can be converted using the ARC migration tool without any issues.
+
+However, in the interests of avoiding modifying the library (which may cause unknown bugs or problems later when upgrading to a new version) a better approach is to specify in your ARC project that ColorUtils' files should be excluded from the ARC validation process. To do that:
+
+1. Go to Project Settings, under Build Phases > Compile Sources
+2. Double-click the UIColor+ColorUtils.m file and add the -fno-objc-arc compiler flag
 
 
 Installation

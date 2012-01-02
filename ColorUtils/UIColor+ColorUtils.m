@@ -1,7 +1,7 @@
 //
 //  UIColor+ColorUtils.m
 //
-//  Version 1.0
+//  Version 1.0.1
 //
 //  Created by Nick Lockwood on 19/11/2011.
 //  Copyright (c) 2011 Charcoal Design. All rights reserved.
@@ -105,6 +105,17 @@
 
 + (UIColor *)colorWithString:(NSString *)string
 {
+    //convert to lowercase
+    string = [string lowercaseString];
+    
+    //try standard colors first
+    UIColor *color = [[UIColor standardColors] objectForKey:string];
+    if (color)
+    {
+        return color;
+    }
+    
+    //create new instance
     return [[[self alloc] initWithString:string] autorelease];
 }
 
@@ -127,7 +138,9 @@
     UIColor *color = [[UIColor standardColors] objectForKey:string];
     if (color)
     {
-        return color;
+        [self release];
+        self = [color retain];
+        return self;
     }
     
     //try hex
