@@ -1,11 +1,12 @@
 //
 //  UIColor+ColorUtils.m
 //
-//  Version 1.0.1
+//  Version 1.0.2
 //
 //  Created by Nick Lockwood on 19/11/2011.
-//  Copyright (c) 2011 Charcoal Design. All rights reserved.
+//  Copyright (c) 2011 Charcoal Design
 //
+//  Distributed under the permissive zlib License
 //  Get the latest version of ColorUtils from either of these locations:
 //
 //  http://charcoaldesign.co.uk/source/cocoa#colorutils
@@ -116,17 +117,17 @@
     }
     
     //create new instance
-    return [[[self alloc] initWithString:string] autorelease];
+    return AH_AUTORELEASE([[self alloc] initWithString:string]);
 }
 
 + (UIColor *)colorWithRGBValue:(NSInteger)rgb
 {
-    return [[[self alloc] initWithRGBValue:rgb] autorelease];
+    return AH_AUTORELEASE([[self alloc] initWithRGBValue:rgb]);
 }
 
 + (UIColor *)colorWithRGBAValue:(NSUInteger)rgba
 {
-    return [[[self alloc] initWithRGBAValue:rgba] autorelease];
+    return AH_AUTORELEASE([[self alloc] initWithRGBAValue:rgba]);
 }
 
 - (UIColor *)initWithString:(NSString *)string
@@ -138,8 +139,8 @@
     UIColor *color = [[UIColor standardColors] objectForKey:string];
     if (color)
     {
-        [self release];
-        self = [color retain];
+        AH_RELEASE(self);
+        self = AH_RETAIN(color);
         return self;
     }
     
@@ -179,7 +180,7 @@
             //unsupported format
             NSLog(@"Unsupported color string format: %@", string);
 #endif
-            [self release];
+            AH_RELEASE(self);
             return nil;
         }
     }

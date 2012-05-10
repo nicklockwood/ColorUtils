@@ -5,14 +5,14 @@ ColorUtils is a category on UIColor that extends it with some commonly needed fe
 
 UIColor is a thin wrapper around CGColor, which supports a wide variety of different formats, making it very flexible. This flexibility seems to come at a bit of a cost to usability for common tasks however. For example, it's non-trivial to access the red, green and blue components of an RGB color, and it is difficult to compare colors because `[UIColor blackColor]` is treated as different from `[UIColor colorWithRed:0 green:0 blue:0 alpha:1]` even though they are identical on screen. ColorUtils makes this tasks easy.
 
-Another common problem is that RGBA UIColors are specified using four floating point values in the range 0 to 1, but virtually all graphics software treats colors as having integer components in the range 0 - 255, often reprasented as a hexadecimal string. ColorUtils lets you specify colors as hexadecimals so you can copy and paste values directly from PhotoShop.
+Another common problem is that RGBA UIColors are specified using four floating point values in the range 0 to 1, but virtually all graphics software treats colors as having integer components in the range 0 - 255, often represented as a hexadecimal string. ColorUtils lets you specify colors as hexadecimals so you can copy and paste values directly from PhotoShop.
 
 
 Supported iOS & SDK Versions
 -----------------------------
 
-* Supported build target - iOS 5.0 (Xcode 4.2)
-* Earliest supported deployment target - iOS 4.3 (Xcode 4.2)
+* Supported build target - iOS 5.1 / Mac OS 10.7 (Xcode 4.3, Apple LLVM compiler 3.0)
+* Earliest supported deployment target - iOS 4.3 / Mac OS 10.6
 * Earliest compatible deployment target - iOS 3.0
 
 NOTE: 'Supported' means that the library has been tested with this version. 'Compatible' means that the library should work on this iOS version (i.e. it doesn't rely on any unavailable SDK features) but is no longer being tested for compatibility and may require tweaking or bug fixes to run correctly.
@@ -21,12 +21,7 @@ NOTE: 'Supported' means that the library has been tested with this version. 'Com
 ARC Compatibility
 ------------------
 
-ColorUtils does not use automatic reference counting, but can be converted using the ARC migration tool without any issues.
-
-However, in the interests of avoiding modifying the library (which may cause unknown bugs or problems later when upgrading to a new version) a better approach is to specify in your ARC project that ColorUtils' files should be excluded from the ARC validation process. To do that:
-
-1. Go to Project Settings, under Build Phases > Compile Sources
-2. Double-click the UIColor+ColorUtils.m file and add the -fno-objc-arc compiler flag
+ColorUtils makes use of the ARC Helper library to automatically work with both ARC and non-ARC projects through conditional compilation. There is no need to exclude ColorUtils files from the ARC validation process, or to convert ColorUtils using the ARC conversion tool.
 
 
 Installation
@@ -54,12 +49,12 @@ Methods
 
 These methods create a color object by parsing the supplied string. The string is first checked to see if it matches any standard color constants names (the check is case insensitive) and if not, an attempt is made to parse the string as a hexadecimal value.
 
-Hexadecimal strings can be prefixed with #, 0x or nothing and can have 3, 6 or 8 digits. 6 digits is the standard rrggbb format, 8 is the same but with an alpha component, 3 is a shorthand used commonly in CSS, where each digit it repeated, so #29f becomes #2299ff, for example.
+Hexadecimal strings can be prefixed with #, 0x or nothing and can have 3, 6 or 8 digits. 6 digits is the standard rrggbb format, 8 is the same but with an alpha component, 3 is a shorthand used commonly in CSS, where each hex digit is repeated, so #29f becomes #2299ff, for example.
 
 + (UIColor *)colorWithRGBValue:(int32_t)rgb;
 - (UIColor *)initWithRGBValue:(int32_t)rgb;
 
-These methods create a color using a single RGB value encoded as an integer. This may seem rather obscure until you realise that such a value can be created easily using a hexadecimal constant, e.g 0xff0000 for red. This is more efficient than using a hex string as it requires less logic to parse.
+These methods create a color using a single RGB value encoded as an integer. This may seem rather obscure until you realise that such a value can be created easily using a hexadecimal constant, e.g 0xff0000 for red. This is more efficient than using a hex string as it requires less logic to parse it.
 
 + (UIColor *)colorWithRGBAValue:(uint32_t)rgba;
 - (UIColor *)initWithRGBAValue:(uint32_t)rgba;
@@ -68,11 +63,11 @@ This method is the same as `colorWithRGBValue` except that the input value inclu
 
 - (int32_t)RGBValue;
 
-This returns color's RGB components as single integer value. This is useful for saving color values to disk, and can be used as the input to the `colorWithRGBValue` method to re-create the UIColor later. This value can be hard to interpret, but you can convert it to a more readable hex value using `NSLog(@"color: %.6x", intColorValue)`. Note that this method only works for monochromatic or RGB colors. Any other format will log a warning and return 0 (black).
+This returns the color's RGB components as single integer value. This is useful for saving color values to disk, and can be used as the input to the `colorWithRGBValue` method to re-create the UIColor later. This value can be hard to interpret, but you can convert it to a more readable hex value using `NSLog(@"color: %.6x", intColorValue)`. Note that this method only works for monochrome or RGB(A) colors. Any other format (e.g. pattern) will log a warning and return 0 (black).
 
 - (uint32_t)RGBAValue;
 
-This method is the same as `RGBValue` except that the returned value includes an alpha component.
+This method is the same as `RGBValue` except that the returned value includes an alpha component. You can convert this to a hex string using `NSLog(@"color: %.8x", intColorValue)`. As above, this only works with monochrome or RGB(A) colors.
 
 - (NSString *)stringValue;
 
@@ -81,11 +76,11 @@ This method converts the color to a string by first matching it against known co
 
 - (BOOL)isMonochromeOrRGB;
 
-This method returns `YES` if the color is a Monochrome or RGB-formatted color. Many of the ColorUtils methods only work correctly on these color types, so this can be useful to check.
+This method returns `YES` if the color is a monochrome or RGB-formatted color. Many of the ColorUtils methods only work correctly on these color types, so this can be useful to check.
 
 - (BOOL)isEquivalent:(id)object;
 
-The standard UIColor isEqual method returns NO if two colors have the same appearance but a different number of components. This means that `[UIColor blackColor]` is treated as different from `[UIColor colorWithRed:0 green:0 blue:0 alpha:1]` even though they are identical on screen. The `isEquivalent` method compares the RGBAValue values of supported colors instead, and so is a more convenient way to compare colors for equality.
+The standard UIColor isEqual method returns NO if two colors have the same appearance but a different number of components. This means that `[UIColor blackColor]` is treated as different from `[UIColor colorWithRed:0 green:0 blue:0 alpha:1]` even though they are identical on screen. The `isEquivalent` method compares the RGBAValue values of the colors instead, and so is a more convenient way to compare colors for equality. If the colors are not monochrom or RGB, this returns the result of `isEqual:` instead.
 
 - (BOOL)isEquivalentToColor:(UIColor *)color;
 

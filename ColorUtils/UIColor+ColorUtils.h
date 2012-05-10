@@ -1,12 +1,13 @@
 //
 //  UIColor+ColorUtils.h
 //
-//  Version 1.0.1
+//  Version 1.0.2
 //
 //  Created by Nick Lockwood on 19/11/2011.
-//  Copyright (c) 2011 Charcoal Design. All rights reserved.
+//  Copyright (c) 2011 Charcoal Design
 //
-//  Get the latest version of ColorUtils from either of these locations:
+//  Distributed under the permissive zlib License
+//  Get the latest version from either of these locations:
 //
 //  http://charcoaldesign.co.uk/source/cocoa#colorutils
 //  https://github.com/nicklockwood/ColorUtils
@@ -29,6 +30,39 @@
 //
 //  3. This notice may not be removed or altered from any source distribution.
 //
+
+//
+//  ARC Helper
+//
+//  Version 1.2
+//
+//  Created by Nick Lockwood on 05/01/2012.
+//  Copyright 2012 Charcoal Design
+//
+//  Distributed under the permissive zlib License
+//  Get the latest version from here:
+//
+//  https://gist.github.com/1563325
+//
+
+#ifndef AH_RETAIN
+#if __has_feature(objc_arc)
+#define AH_RETAIN(x) x
+#define AH_RELEASE(x)
+#define AH_AUTORELEASE(x) x
+#define AH_SUPER_DEALLOC
+#else
+#define __AH_WEAK
+#define AH_WEAK assign
+#define AH_RETAIN(x) [x retain]
+#define AH_RELEASE(x) [x release]
+#define AH_AUTORELEASE(x) [x autorelease]
+#define AH_SUPER_DEALLOC [super dealloc]
+#endif
+#endif
+
+//  ARC Helper ends
+
 
 #import <UIKit/UIKit.h>
 
