@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "UIColor+ColorUtils.h"
+#import "ColorUtils.h"
 
 @implementation ViewController
 

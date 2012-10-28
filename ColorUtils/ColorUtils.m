@@ -1,15 +1,14 @@
 //
-//  UIColor+ColorUtils.m
+//  ColorUtils.m
 //
-//  Version 1.0.2
+//  Version 1.0.3
 //
 //  Created by Nick Lockwood on 19/11/2011.
 //  Copyright (c) 2011 Charcoal Design
 //
 //  Distributed under the permissive zlib License
-//  Get the latest version of ColorUtils from either of these locations:
+//  Get the latest version from here:
 //
-//  http://charcoaldesign.co.uk/source/cocoa#colorutils
 //  https://github.com/nicklockwood/ColorUtils
 //
 //  This software is provided 'as-is', without any express or implied
@@ -31,7 +30,37 @@
 //  3. This notice may not be removed or altered from any source distribution.
 //
 
-#import "UIColor+ColorUtils.h"
+//
+//  ARC Helper
+//
+//  Version 2.1
+//
+//  Created by Nick Lockwood on 05/01/2012.
+//  Copyright 2012 Charcoal Design
+//
+//  Distributed under the permissive zlib license
+//  Get the latest version from here:
+//
+//  https://gist.github.com/1563325
+//
+
+#ifndef ah_retain
+#if __has_feature(objc_arc)
+#define ah_retain self
+#define ah_dealloc self
+#define release self
+#define autorelease self
+#else
+#define ah_retain retain
+#define ah_dealloc dealloc
+#define __bridge
+#endif
+#endif
+
+//  ARC Helper ends
+
+
+#import "ColorUtils.h"
 
 @implementation UIColor (ColorUtils)
 
@@ -115,19 +144,19 @@
     {
         return color;
     }
-    
+
     //create new instance
-    return AH_AUTORELEASE([[self alloc] initWithString:string]);
+    return [[[self alloc] initWithString:string] autorelease];
 }
 
 + (UIColor *)colorWithRGBValue:(NSInteger)rgb
 {
-    return AH_AUTORELEASE([[self alloc] initWithRGBValue:rgb]);
+    return [[[self alloc] initWithRGBValue:rgb] autorelease];
 }
 
 + (UIColor *)colorWithRGBAValue:(NSUInteger)rgba
 {
-    return AH_AUTORELEASE([[self alloc] initWithRGBAValue:rgba]);
+    return [[[self alloc] initWithRGBAValue:rgba] autorelease];
 }
 
 - (UIColor *)initWithString:(NSString *)string
@@ -139,8 +168,8 @@
     UIColor *color = [[UIColor standardColors] objectForKey:string];
     if (color)
     {
-        AH_RELEASE(self);
-        self = AH_RETAIN(color);
+        [self release];
+        self = [color ah_retain];
         return self;
     }
     
@@ -180,7 +209,7 @@
             //unsupported format
             NSLog(@"Unsupported color string format: %@", string);
 #endif
-            AH_RELEASE(self);
+            [self release];
             return nil;
         }
     }

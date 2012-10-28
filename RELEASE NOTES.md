@@ -1,3 +1,9 @@
+Version 1.0.3
+
+- Moved ARCHelper macros out of .h file
+- Renamed class files for future flexibility
+- Updated example for iOS6 and ARC
+
 Version 1.0.2
 
 - Added automatic support for ARC compile targets

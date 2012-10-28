@@ -14,9 +14,9 @@
 		01260114149D6DA700D31467 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01260113149D6DA700D31467 /* main.m */; };
 		01260118149D6DA800D31467 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01260117149D6DA800D31467 /* AppDelegate.m */; };
 		0126011B149D6DA800D31467 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0126011A149D6DA800D31467 /* ViewController.m */; };
-		0126011E149D6DA800D31467 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0126011C149D6DA800D31467 /* ViewController_iPhone.xib */; };
-		01260121149D6DA800D31467 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0126011F149D6DA800D31467 /* ViewController_iPad.xib */; };
-		012B9E7F149D866700075D91 /* UIColor+ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 012B9E7E149D866700075D91 /* UIColor+ColorUtils.m */; };
+		0126011E149D6DA800D31467 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0126011C149D6DA800D31467 /* ViewController.xib */; };
+		012B9E7F149D866700075D91 /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 012B9E7E149D866700075D91 /* ColorUtils.m */; };
+		01C0FFFA163DBA5B00A87C3E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01C0FFF9163DBA5B00A87C3E /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,10 +32,10 @@
 		01260117149D6DA800D31467 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		01260119149D6DA800D31467 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0126011A149D6DA800D31467 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		0126011D149D6DA800D31467 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
-		01260120149D6DA800D31467 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
-		012B9E7D149D866700075D91 /* UIColor+ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorUtils.h"; sourceTree = "<group>"; };
-		012B9E7E149D866700075D91 /* UIColor+ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorUtils.m"; sourceTree = "<group>"; };
+		0126011D149D6DA800D31467 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		012B9E7D149D866700075D91 /* ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtils.h; sourceTree = "<group>"; };
+		012B9E7E149D866700075D91 /* ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorUtils.m; path = ../../ColorUtils/ColorUtils.m; sourceTree = SOURCE_ROOT; };
+		01C0FFF9163DBA5B00A87C3E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,8 +87,7 @@
 				01260117149D6DA800D31467 /* AppDelegate.m */,
 				01260119149D6DA800D31467 /* ViewController.h */,
 				0126011A149D6DA800D31467 /* ViewController.m */,
-				0126011C149D6DA800D31467 /* ViewController_iPhone.xib */,
-				0126011F149D6DA800D31467 /* ViewController_iPad.xib */,
+				0126011C149D6DA800D31467 /* ViewController.xib */,
 				0126010E149D6DA700D31467 /* Supporting Files */,
 			);
 			path = ColorUtilsExample;
@@ -97,6 +96,7 @@
 		0126010E149D6DA700D31467 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				01C0FFF9163DBA5B00A87C3E /* Default-568h@2x.png */,
 				0126010F149D6DA700D31467 /* ColorUtilsExample-Info.plist */,
 				01260110149D6DA700D31467 /* InfoPlist.strings */,
 				01260113149D6DA700D31467 /* main.m */,
@@ -108,8 +108,8 @@
 		012B9E7C149D866700075D91 /* ColorUtils */ = {
 			isa = PBXGroup;
 			children = (
-				012B9E7D149D866700075D91 /* UIColor+ColorUtils.h */,
-				012B9E7E149D866700075D91 /* UIColor+ColorUtils.m */,
+				012B9E7D149D866700075D91 /* ColorUtils.h */,
+				012B9E7E149D866700075D91 /* ColorUtils.m */,
 			);
 			name = ColorUtils;
 			path = ../../ColorUtils;
@@ -166,8 +166,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				01260112149D6DA700D31467 /* InfoPlist.strings in Resources */,
-				0126011E149D6DA800D31467 /* ViewController_iPhone.xib in Resources */,
-				01260121149D6DA800D31467 /* ViewController_iPad.xib in Resources */,
+				0126011E149D6DA800D31467 /* ViewController.xib in Resources */,
+				01C0FFFA163DBA5B00A87C3E /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,7 +181,7 @@
 				01260114149D6DA700D31467 /* main.m in Sources */,
 				01260118149D6DA800D31467 /* AppDelegate.m in Sources */,
 				0126011B149D6DA800D31467 /* ViewController.m in Sources */,
-				012B9E7F149D866700075D91 /* UIColor+ColorUtils.m in Sources */,
+				012B9E7F149D866700075D91 /* ColorUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,20 +196,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		0126011C149D6DA800D31467 /* ViewController_iPhone.xib */ = {
+		0126011C149D6DA800D31467 /* ViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				0126011D149D6DA800D31467 /* en */,
 			);
-			name = ViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		0126011F149D6DA800D31467 /* ViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				01260120149D6DA800D31467 /* en */,
-			);
-			name = ViewController_iPad.xib;
+			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -263,6 +255,7 @@
 		01260125149D6DA800D31467 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ColorUtilsExample/ColorUtilsExample-Prefix.pch";
 				INFOPLIST_FILE = "ColorUtilsExample/ColorUtilsExample-Info.plist";
@@ -274,6 +267,7 @@
 		01260126149D6DA800D31467 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ColorUtilsExample/ColorUtilsExample-Prefix.pch";
 				INFOPLIST_FILE = "ColorUtilsExample/ColorUtilsExample-Info.plist";
