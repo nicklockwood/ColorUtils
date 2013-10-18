@@ -3,16 +3,16 @@ Purpose
 
 ColorUtils is a category on UIColor that extends it with some commonly needed features that were left out of the standard API.
 
-UIColor is a thin wrapper around CGColor, which supports a wide variety of different formats, making it very flexible. This flexibility seems to come at a bit of a cost to usability for common tasks however. For example, it's non-trivial to access the red, green and blue components of an RGB color, and it is difficult to compare colors because `[UIColor blackColor]` is treated as different from `[UIColor colorWithRed:0 green:0 blue:0 alpha:1]` even though they are identical on screen. ColorUtils makes this tasks easy.
+UIColor is a thin wrapper around CGColor, which supports a wide variety of different formats, making it very flexible. This flexibility comes at a cost to usability for common tasks however; for example, it's non-trivial to access the red, green and blue components of an RGB color, and it is difficult to compare colors because `[UIColor blackColor]` is treated as different from `[UIColor colorWithRed:0 green:0 blue:0 alpha:1]` even though they are identical on screen. ColorUtils makes these tasks easy.
 
-Another common problem is that RGBA UIColors are specified using four floating point values in the range 0 to 1, but virtually all graphics software treats colors as having integer components in the range 0 - 255, often represented as a hexadecimal string. ColorUtils lets you specify colors as hexadecimals so you can copy and paste values directly from PhotoShop.
+Another common problem is that RGBA UIColors are specified using four floating point values in the range 0.0 to 1.0, but virtually all graphics software treats colors as having integer components in the range 0 - 255, often represented as a hexadecimal string. ColorUtils lets you specify colors as hexadecimals so you can copy and paste values directly from PhotoShop.
 
 
 Supported iOS & SDK Versions
 -----------------------------
 
-* Supported build target - iOS 6.0 / Mac OS 10.8 (Xcode 4.5.1, Apple LLVM compiler 4.1)
-* Earliest supported deployment target - iOS 5.0 / Mac OS 10.7
+* Supported build target - iOS 7.0 (Xcode 5.0, Apple LLVM compiler 5.0)
+* Earliest supported deployment target - iOS 5.0
 * Earliest compatible deployment target - iOS 4.3
 
 NOTE: 'Supported' means that the library has been tested with this version. 'Compatible' means that the library should work on this iOS version (i.e. it doesn't rely on any unavailable SDK features) but is no longer being tested for compatibility and may require tweaking or bug fixes to run correctly.
@@ -21,13 +21,15 @@ NOTE: 'Supported' means that the library has been tested with this version. 'Com
 ARC Compatibility
 ------------------
 
-ColorUtils automatically works with both ARC and non-ARC projects through conditional compilation. There is no need to exclude ColorUtils files from the ARC validation process, or to convert ColorUtils using the ARC conversion tool.
+As of version 1.1, ColorUtils requires ARC. If you wish to use ColorUtils in a non-ARC project, just add the -fobjc-arc compiler flag to the ColorUtils.m class. To do this, go to the Build Phases tab in your target settings, open the Compile Sources group, double-click iRate.m in the list and type -fobjc-arc into the popover.
+
+If you wish to convert your whole project to ARC, comment out the #error line in ColorUtils.m, then run the Edit > Refactor > Convert to Objective-C ARC... tool in Xcode and make sure all files that you wish to use ARC for (including ColorUtils.m) are checked.
 
 
 Installation
 --------------
 
-To use ColorUtils in an app, just drag the UIColor.h and .m files into your project.
+To use ColorUtils in an app, just drag the ColorUtils.h and .m files into your project.
 
 
 Properties
@@ -44,6 +46,10 @@ These properties give you direct (read only) access to the red, green, blue and 
 Methods
 ------------
 
++ (void)registerColor:(UIColor *)color forName:(NSString *)name;
+
+Register a custom color with a name for use with the colorWithString: method.
+
 + (UIColor *)colorWithString:(NSString *)string;
 - (UIColor *)initWithString:(NSString *)string;
 
@@ -54,7 +60,7 @@ Hexadecimal strings can be prefixed with #, 0x or nothing and can have 3, 6 or 8
 + (UIColor *)colorWithRGBValue:(int32_t)rgb;
 - (UIColor *)initWithRGBValue:(int32_t)rgb;
 
-These methods create a color using a single RGB value encoded as an integer. This may seem rather obscure until you realise that such a value can be created easily using a hexadecimal constant, e.g 0xff0000 for red. This is more efficient than using a hex string as it requires less logic to parse it.
+These methods create a color using a single RGB value encoded as an integer. This may seem rather obscure until you realise that such a value can be created easily using a hexadecimal constant, e.g 0xff0000 for red. This is more efficient than using a hex string.
 
 + (UIColor *)colorWithRGBAValue:(uint32_t)rgba;
 - (UIColor *)initWithRGBAValue:(uint32_t)rgba;
@@ -73,7 +79,6 @@ This method is the same as `RGBValue` except that the returned value includes an
 
 This method converts the color to a string by first matching it against known color constants, and returning their name if there's a match, and then by converting it to a 6 or 8 digit hex string, depending on whether the color has an alpha component. This value is useful if you want to log or display the color, and can also be used to save and re-create the color by passing the string to the `colorWithString` method.
 
-
 - (BOOL)isMonochromeOrRGB;
 
 This method returns `YES` if the color is a monochrome or RGB-formatted color. Many of the ColorUtils methods only work correctly on these color types, so this can be useful to check.
@@ -85,6 +90,14 @@ The standard UIColor isEqual method returns NO if two colors have the same appea
 - (BOOL)isEquivalentToColor:(UIColor *)color;
 
 Same as `isEquivalent`, but slightly more efficient if you already know that the object being compared is a UIColor.
+
+- (UIColor *)colorWithBrightness:(CGFloat)brightness;
+
+Applies a multiplier to the red, green and blue components of the color to vary the brightness. The brightness argument should be in the range 0.0 - 1.0, with 0.0 returning black and 1.0 returning the original color. Alpha is unaffected.
+
+- (UIColor *)colorBlendedWithColor:(UIColor *)color factor:(CGFloat)factor;
+
+This method blends between two colors, using the supplied factor to control the level of blending. The factor value should be in the range 0.0 - 1.0, with 0.0 returning the receiver and 1.0 returning the supplied color.
 
 
 Color Constant Names
@@ -107,7 +120,9 @@ The list of standard color constants can be found in the UIColor documentation, 
 	purple -  Equivalent to 0.5, 0.0, 0.5 RGB
 	brown -  Equivalent to 0.6, 0.4, 0.2 RGB
 	clear -  Equivalent to 0.0 white, 0.0 alpha
-
+	
+You can register custom named colors using the `registerColor:forName:` method. Once registered, your custom color will be read/written by the `colorWithString`/`stringValue` methods, just like the standard colors.
+	
 
 Example
 --------

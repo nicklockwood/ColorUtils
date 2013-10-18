@@ -1,7 +1,7 @@
 //
 //  ColorUtils.h
 //
-//  Version 1.0.3
+//  Version 1.1
 //
 //  Created by Nick Lockwood on 19/11/2011.
 //  Copyright (c) 2011 Charcoal Design
@@ -40,12 +40,14 @@
 @property (nonatomic, readonly) CGFloat blue;
 @property (nonatomic, readonly) CGFloat alpha;
 
-+ (UIColor *)colorWithString:(NSString *)string;
-+ (UIColor *)colorWithRGBValue:(int32_t)rgb;
-+ (UIColor *)colorWithRGBAValue:(uint32_t)rgba;
-- (UIColor *)initWithString:(NSString *)string;
-- (UIColor *)initWithRGBValue:(int32_t)rgb;
-- (UIColor *)initWithRGBAValue:(uint32_t)rgba;
++ (void)registerColor:(UIColor *)color forName:(NSString *)name;
+
++ (instancetype)colorWithString:(NSString *)string;
++ (instancetype)colorWithRGBValue:(int32_t)rgb;
++ (instancetype)colorWithRGBAValue:(uint32_t)rgba;
+- (instancetype)initWithString:(NSString *)string;
+- (instancetype)initWithRGBValue:(int32_t)rgb;
+- (instancetype)initWithRGBAValue:(uint32_t)rgba;
 
 - (int32_t)RGBValue;
 - (uint32_t)RGBAValue;
@@ -54,5 +56,8 @@
 - (BOOL)isMonochromeOrRGB;
 - (BOOL)isEquivalent:(id)object;
 - (BOOL)isEquivalentToColor:(UIColor *)color;
+
+- (instancetype)colorWithBrightness:(CGFloat)brightness;
+- (instancetype)colorBlendedWithColor:(UIColor *)color factor:(CGFloat)factor;
 
 @end

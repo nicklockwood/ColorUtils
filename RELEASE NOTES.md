@@ -1,3 +1,11 @@
+Version 1.1
+
+- Now requires ARC
+- Added registerColor:forName: method for adding bespoke named colors
+- Added colorWithBrightness: and colorBlendedWithColor: methods
+- Now complies with -Wextra warning level
+- Added CocoaPods podspec file
+
 Version 1.0.3
 
 - Moved ARCHelper macros out of .h file

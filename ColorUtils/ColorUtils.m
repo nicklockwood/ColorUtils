@@ -1,7 +1,7 @@
 //
 //  ColorUtils.m
 //
-//  Version 1.0.3
+//  Version 1.1
 //
 //  Created by Nick Lockwood on 19/11/2011.
 //  Copyright (c) 2011 Charcoal Design
@@ -30,69 +30,45 @@
 //  3. This notice may not be removed or altered from any source distribution.
 //
 
-//
-//  ARC Helper
-//
-//  Version 2.1
-//
-//  Created by Nick Lockwood on 05/01/2012.
-//  Copyright 2012 Charcoal Design
-//
-//  Distributed under the permissive zlib license
-//  Get the latest version from here:
-//
-//  https://gist.github.com/1563325
-//
-
-#ifndef ah_retain
-#if __has_feature(objc_arc)
-#define ah_retain self
-#define ah_dealloc self
-#define release self
-#define autorelease self
-#else
-#define ah_retain retain
-#define ah_dealloc dealloc
-#define __bridge
-#endif
-#endif
-
-//  ARC Helper ends
-
 
 #import "ColorUtils.h"
 
+
+#import <Availability.h>
+#if !__has_feature(objc_arc)
+#error This class requires automatic reference counting
+#endif
+
+
 @implementation UIColor (ColorUtils)
 
-#pragma mark Private
-
-+ (NSDictionary *)standardColors
++ (NSMutableDictionary *)standardColors
 {
-    static NSDictionary *colors = nil;
-    if (colors == nil)
-    {
-        colors = [[NSDictionary alloc] initWithObjectsAndKeys:
-                  [UIColor blackColor], @"black", // 0.0 white
-                  [UIColor darkGrayColor], @"darkgray", // 0.333 white
-                  [UIColor lightGrayColor], @"lightgray", // 0.667 white
-                  [UIColor whiteColor], @"white", // 1.0 white
-                  [UIColor grayColor], @"gray", // 0.5 white
-                  [UIColor redColor], @"red", // 1.0, 0.0, 0.0 RGB
-                  [UIColor greenColor], @"green", // 0.0, 1.0, 0.0 RGB
-                  [UIColor blueColor], @"blue", // 0.0, 0.0, 1.0 RGB
-                  [UIColor cyanColor], @"cyan", // 0.0, 1.0, 1.0 RGB
-                  [UIColor yellowColor], @"yellow", // 1.0, 1.0, 0.0 RGB
-                  [UIColor magentaColor], @"magenta", // 1.0, 0.0, 1.0 RGB
-                  [UIColor orangeColor], @"orange", // 1.0, 0.5, 0.0 RGB
-                  [UIColor purpleColor], @"purple", // 0.5, 0.0, 0.5 RGB
-                  [UIColor brownColor], @"brown", // 0.6, 0.4, 0.2 RGB
-                  [UIColor clearColor], @"clear", // 0.0 white, 0.0 alpha
-                  nil];
-    }
+    static NSMutableDictionary *colors = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        colors = [@{@"black": [self blackColor], // 0.0 white
+                  @"darkgray": [self darkGrayColor], // 0.333 white
+                  @"lightgray": [self lightGrayColor], // 0.667 white
+                  @"white": [self whiteColor], // 1.0 white
+                  @"gray": [self grayColor], // 0.5 white
+                  @"red": [self redColor], // 1.0, 0.0, 0.0 RGB
+                  @"green": [self greenColor], // 0.0, 1.0, 0.0 RGB
+                  @"blue": [self blueColor], // 0.0, 0.0, 1.0 RGB
+                  @"cyan": [self cyanColor], // 0.0, 1.0, 1.0 RGB
+                  @"yellow": [self yellowColor], // 1.0, 1.0, 0.0 RGB
+                  @"magenta": [self magentaColor], // 1.0, 0.0, 1.0 RGB
+                  @"orange": [self orangeColor], // 1.0, 0.5, 0.0 RGB
+                  @"purple": [self purpleColor], // 0.5, 0.0, 0.5 RGB
+                  @"brown": [self brownColor], // 0.6, 0.4, 0.2 RGB
+                  @"clear": [self clearColor]} mutableCopy];
+    });
+    
     return colors;
 }
 
-- (void)getColorComponents:(CGFloat *)rgba
+- (void)getRGBAComponents:(CGFloat[4])rgba
 {
     CGColorSpaceModel model = CGColorSpaceGetModel(CGColorGetColorSpace(self.CGColor));
     const CGFloat *components = CGColorGetComponents(self.CGColor);
@@ -131,46 +107,57 @@
     }
 }
 
-#pragma mark Public
++ (void)registerColor:(UIColor *)color forName:(NSString *)name
+{
+    name = [name lowercaseString];
+    
+#ifdef DEBUG
+    
+    //don't allow re-registration
+    NSAssert([self standardColors][name] == nil || [[self standardColors][name] isEquivalentToColor:color],
+             @"Cannot re-register the color '%@' as this is already assigned", name);
+    
+#endif
 
-+ (UIColor *)colorWithString:(NSString *)string
+    [self standardColors][[name lowercaseString]] = color;
+}
+
++ (instancetype)colorWithString:(NSString *)string
 {
     //convert to lowercase
     string = [string lowercaseString];
     
     //try standard colors first
-    UIColor *color = [[UIColor standardColors] objectForKey:string];
+    UIColor *color = [self standardColors][string];
     if (color)
     {
         return color;
     }
 
     //create new instance
-    return [[[self alloc] initWithString:string] autorelease];
+    return [[self alloc] initWithString:string];
 }
 
-+ (UIColor *)colorWithRGBValue:(NSInteger)rgb
++ (instancetype)colorWithRGBValue:(NSInteger)rgb
 {
-    return [[[self alloc] initWithRGBValue:rgb] autorelease];
+    return [[self alloc] initWithRGBValue:rgb];
 }
 
-+ (UIColor *)colorWithRGBAValue:(NSUInteger)rgba
++ (instancetype)colorWithRGBAValue:(NSUInteger)rgba
 {
-    return [[[self alloc] initWithRGBAValue:rgba] autorelease];
+    return [[self alloc] initWithRGBAValue:rgba];
 }
 
-- (UIColor *)initWithString:(NSString *)string
+- (instancetype)initWithString:(NSString *)string
 {
     //convert to lowercase
     string = [string lowercaseString];
     
     //try standard colors
-    UIColor *color = [[UIColor standardColors] objectForKey:string];
+    UIColor *color = [[self class] standardColors][string];
     if (color)
     {
-        [self release];
-        self = [color ah_retain];
-        return self;
+        return ((self = color));
     }
     
     //try hex
@@ -209,7 +196,6 @@
             //unsupported format
             NSLog(@"Unsupported color string format: %@", string);
 #endif
-            [self release];
             return nil;
         }
     }
@@ -219,7 +205,7 @@
     return [self initWithRGBAValue:rgba];
 }
 
-- (UIColor *)initWithRGBValue:(NSInteger)rgb
+- (instancetype)initWithRGBValue:(NSInteger)rgb
 {
     CGFloat red = ((rgb & 0xFF0000) >> 16) / 255.0f;
 	CGFloat green = ((rgb & 0x00FF00) >> 8) / 255.0f;
@@ -227,7 +213,7 @@
 	return [self initWithRed:red green:green blue:blue alpha:1.0f];
 }
 
-- (UIColor *)initWithRGBAValue:(NSUInteger)rgba
+- (instancetype)initWithRGBAValue:(NSUInteger)rgba
 {
     CGFloat red = ((rgba & 0xFF000000) >> 24) / 255.0f;
     CGFloat green = ((rgba & 0x00FF0000) >> 16) / 255.0f;
@@ -239,7 +225,7 @@
 - (NSInteger)RGBValue
 {
     CGFloat rgba[4];
-    [self getColorComponents:rgba];
+    [self getRGBAComponents:rgba];
     uint8_t red = rgba[0]*255;
     uint8_t green = rgba[1]*255;
     uint8_t blue = rgba[2]*255;
@@ -249,7 +235,7 @@
 - (NSUInteger)RGBAValue
 {
     CGFloat rgba[4];
-    [self getColorComponents:rgba];
+    [self getRGBAComponents:rgba];
     uint8_t red = rgba[0]*255;
     uint8_t green = rgba[1]*255;
     uint8_t blue = rgba[2]*255;
@@ -260,10 +246,10 @@
 - (NSString *)stringValue
 {
     //try standard colors
-    NSInteger index = [[[UIColor standardColors] allValues] indexOfObject:self];
+    NSInteger index = [[[[self class] standardColors] allValues] indexOfObject:self];
     if (index != NSNotFound)
     {
-        return [[[UIColor standardColors] allKeys] objectAtIndex:index];
+        return [[[self class] standardColors] allKeys][index];
     }
     
     //convert to hex
@@ -282,21 +268,21 @@
 - (CGFloat)red
 {
     CGFloat rgba[4];
-    [self getColorComponents:rgba];
+    [self getRGBAComponents:rgba];
 	return rgba[0];    
 }
 
 - (CGFloat)green
 {
     CGFloat rgba[4];
-    [self getColorComponents:rgba];
+    [self getRGBAComponents:rgba];
 	return rgba[1];    
 }
 
 - (CGFloat)blue
 {
     CGFloat rgba[4];
-    [self getColorComponents:rgba];
+    [self getRGBAComponents:rgba];
 	return rgba[2];    
 }
 
@@ -313,20 +299,47 @@
 
 - (BOOL)isEquivalent:(id)object
 {
-    if ([object isKindOfClass:[UIColor class]])
+    if ([object isKindOfClass:[self class]])
     {
         return [self isEquivalentToColor:object];
     }
     return NO;
 }
 
-- (BOOL)isEquivalentToColor:(UIColor *)color;
+- (BOOL)isEquivalentToColor:(UIColor *)color
 {
     if ([self isMonochromeOrRGB] && [color isMonochromeOrRGB])
     {
         return self.RGBAValue == color.RGBAValue;
     }
     return [self isEqual:color];
+}
+
+- (instancetype)colorWithBrightness:(CGFloat)brightness
+{
+    brightness = fminf(fmaxf(brightness, 0.0f), 1.0f);
+    
+    CGFloat rgba[4];
+    [self getRGBAComponents:rgba];
+    
+    return [[self class] colorWithRed:rgba[0] * brightness
+                                green:rgba[1] * brightness
+                                 blue:rgba[2] * brightness
+                                alpha:rgba[3]];
+}
+
+- (instancetype)colorBlendedWithColor:(UIColor *)color factor:(CGFloat)factor
+{
+    factor = fminf(fmaxf(factor, 0.0f), 1.0f);
+    
+    CGFloat fromRGBA[4], toRGBA[4];
+    [self getRGBAComponents:fromRGBA];
+    [color getRGBAComponents:toRGBA];
+    
+    return [[self class] colorWithRed:fromRGBA[0] + (toRGBA[0] - fromRGBA[0]) * factor
+                                green:fromRGBA[1] + (toRGBA[1] - fromRGBA[1]) * factor
+                                 blue:fromRGBA[2] + (toRGBA[2] - fromRGBA[2]) * factor
+                                alpha:fromRGBA[3] + (toRGBA[3] - fromRGBA[3]) * factor];
 }
 
 @end

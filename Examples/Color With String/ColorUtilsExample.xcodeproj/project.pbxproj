@@ -16,6 +16,7 @@
 		0126011B149D6DA800D31467 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0126011A149D6DA800D31467 /* ViewController.m */; };
 		0126011E149D6DA800D31467 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0126011C149D6DA800D31467 /* ViewController.xib */; };
 		012B9E7F149D866700075D91 /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 012B9E7E149D866700075D91 /* ColorUtils.m */; };
+		012C5C89181126FA0073BFCE /* Plaid.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 012C5C88181126FA0073BFCE /* Plaid.jpg */; };
 		01C0FFFA163DBA5B00A87C3E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01C0FFF9163DBA5B00A87C3E /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		0126011D149D6DA800D31467 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		012B9E7D149D866700075D91 /* ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtils.h; sourceTree = "<group>"; };
 		012B9E7E149D866700075D91 /* ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorUtils.m; path = ../../ColorUtils/ColorUtils.m; sourceTree = SOURCE_ROOT; };
+		012C5C88181126FA0073BFCE /* Plaid.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Plaid.jpg; sourceTree = "<group>"; };
 		01C0FFF9163DBA5B00A87C3E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +103,7 @@
 				01260110149D6DA700D31467 /* InfoPlist.strings */,
 				01260113149D6DA700D31467 /* main.m */,
 				01260115149D6DA700D31467 /* ColorUtilsExample-Prefix.pch */,
+				012C5C88181126FA0073BFCE /* Plaid.jpg */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -141,7 +144,7 @@
 		012600FA149D6DA700D31467 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = 012600FD149D6DA700D31467 /* Build configuration list for PBXProject "ColorUtilsExample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -168,6 +171,7 @@
 				01260112149D6DA700D31467 /* InfoPlist.strings in Resources */,
 				0126011E149D6DA800D31467 /* ViewController.xib in Resources */,
 				01C0FFFA163DBA5B00A87C3E /* Default-568h@2x.png in Resources */,
+				012C5C89181126FA0073BFCE /* Plaid.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,7 +215,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -223,12 +232,21 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+				);
 			};
 			name = Debug;
 		};
@@ -236,19 +254,32 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+				);
 			};
 			name = Release;
 		};
@@ -256,10 +287,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_STATIC_ANALYZER_MODE = deep;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ColorUtilsExample/ColorUtilsExample-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "ColorUtilsExample/ColorUtilsExample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -268,10 +302,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_STATIC_ANALYZER_MODE = deep;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ColorUtilsExample/ColorUtilsExample-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "ColorUtilsExample/ColorUtilsExample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
