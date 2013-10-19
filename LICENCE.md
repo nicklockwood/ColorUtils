@@ -1,5 +1,5 @@
 ColorUtils
-Version 1.1, October 18th, 2013
+Version 1.1.1, October 19th, 2013
 
 Copyright (C) 2011 Charcoal Design
 

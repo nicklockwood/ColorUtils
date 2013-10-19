@@ -57,8 +57,8 @@ These methods create a color object by parsing the supplied string. The string i
 
 Hexadecimal strings can be prefixed with #, 0x or nothing and can have 3, 6 or 8 digits. 6 digits is the standard rrggbb format, 8 is the same but with an alpha component, 3 is a shorthand used commonly in CSS, where each hex digit is repeated, so #29f becomes #2299ff, for example.
 
-+ (UIColor *)colorWithRGBValue:(int32_t)rgb;
-- (UIColor *)initWithRGBValue:(int32_t)rgb;
++ (UIColor *)colorWithRGBValue:(uint32_t)rgb;
+- (UIColor *)initWithRGBValue:(uint32_t)rgb;
 
 These methods create a color using a single RGB value encoded as an integer. This may seem rather obscure until you realise that such a value can be created easily using a hexadecimal constant, e.g 0xff0000 for red. This is more efficient than using a hex string.
 
@@ -67,7 +67,7 @@ These methods create a color using a single RGB value encoded as an integer. Thi
 
 This method is the same as `colorWithRGBValue` except that the input value includes an alpha component, e.g 0xff00007f for 50% transparent red. Do not mix up the `colorWithRGBValue` and `colorWithRGBAValue` methods as RGB integer values and RGBA integer values are not interchangeable.
 
-- (int32_t)RGBValue;
+- (uint32_t)RGBValue;
 
 This returns the color's RGB components as single integer value. This is useful for saving color values to disk, and can be used as the input to the `colorWithRGBValue` method to re-create the UIColor later. This value can be hard to interpret, but you can convert it to a more readable hex value using `NSLog(@"color: %.6x", intColorValue)`. Note that this method only works for monochrome or RGB(A) colors. Any other format (e.g. pattern) will log a warning and return 0 (black).
 

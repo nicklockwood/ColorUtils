@@ -1,3 +1,7 @@
+Version 1.1.1
+
+_ Fixed some type mismatch warnings affecting arm64 builds
+
 Version 1.1
 
 - Now requires ARC

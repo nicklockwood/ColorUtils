@@ -1,7 +1,7 @@
 //
 //  ColorUtils.m
 //
-//  Version 1.1
+//  Version 1.1.1
 //
 //  Created by Nick Lockwood on 19/11/2011.
 //  Copyright (c) 2011 Charcoal Design
@@ -138,12 +138,12 @@
     return [[self alloc] initWithString:string];
 }
 
-+ (instancetype)colorWithRGBValue:(NSInteger)rgb
++ (instancetype)colorWithRGBValue:(uint32_t)rgb
 {
     return [[self alloc] initWithRGBValue:rgb];
 }
 
-+ (instancetype)colorWithRGBAValue:(NSUInteger)rgba
++ (instancetype)colorWithRGBAValue:(uint32_t)rgba
 {
     return [[self alloc] initWithRGBAValue:rgba];
 }
@@ -205,7 +205,7 @@
     return [self initWithRGBAValue:rgba];
 }
 
-- (instancetype)initWithRGBValue:(NSInteger)rgb
+- (instancetype)initWithRGBValue:(uint32_t)rgb
 {
     CGFloat red = ((rgb & 0xFF0000) >> 16) / 255.0f;
 	CGFloat green = ((rgb & 0x00FF00) >> 8) / 255.0f;
@@ -213,7 +213,7 @@
 	return [self initWithRed:red green:green blue:blue alpha:1.0f];
 }
 
-- (instancetype)initWithRGBAValue:(NSUInteger)rgba
+- (instancetype)initWithRGBAValue:(uint32_t)rgba
 {
     CGFloat red = ((rgba & 0xFF000000) >> 24) / 255.0f;
     CGFloat green = ((rgba & 0x00FF0000) >> 16) / 255.0f;
@@ -222,7 +222,7 @@
 	return [self initWithRed:red green:green blue:blue alpha:alpha];
 }
 
-- (NSInteger)RGBValue
+- (uint32_t)RGBValue
 {
     CGFloat rgba[4];
     [self getRGBAComponents:rgba];
@@ -232,7 +232,7 @@
     return (red << 16) + (green << 8) + blue;
 }
 
-- (NSUInteger)RGBAValue
+- (uint32_t)RGBAValue
 {
     CGFloat rgba[4];
     [self getRGBAComponents:rgba];
@@ -246,7 +246,7 @@
 - (NSString *)stringValue
 {
     //try standard colors
-    NSInteger index = [[[[self class] standardColors] allValues] indexOfObject:self];
+    NSUInteger index = [[[[self class] standardColors] allValues] indexOfObject:self];
     if (index != NSNotFound)
     {
         return [[[self class] standardColors] allKeys][index];

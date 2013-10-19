@@ -1,7 +1,7 @@
 //
 //  ColorUtils.h
 //
-//  Version 1.1
+//  Version 1.1.1
 //
 //  Created by Nick Lockwood on 19/11/2011.
 //  Copyright (c) 2011 Charcoal Design
@@ -43,13 +43,13 @@
 + (void)registerColor:(UIColor *)color forName:(NSString *)name;
 
 + (instancetype)colorWithString:(NSString *)string;
-+ (instancetype)colorWithRGBValue:(int32_t)rgb;
++ (instancetype)colorWithRGBValue:(uint32_t)rgb;
 + (instancetype)colorWithRGBAValue:(uint32_t)rgba;
 - (instancetype)initWithString:(NSString *)string;
-- (instancetype)initWithRGBValue:(int32_t)rgb;
+- (instancetype)initWithRGBValue:(uint32_t)rgb;
 - (instancetype)initWithRGBAValue:(uint32_t)rgba;
 
-- (int32_t)RGBValue;
+- (uint32_t)RGBValue;
 - (uint32_t)RGBAValue;
 - (NSString *)stringValue;
 
