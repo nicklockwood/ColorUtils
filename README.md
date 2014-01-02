@@ -93,7 +93,7 @@ Same as `isEquivalent`, but slightly more efficient if you already know that the
 
 - (UIColor *)colorWithBrightness:(CGFloat)brightness;
 
-Applies a multiplier to the red, green and blue components of the color to vary the brightness. The brightness argument should be in the range 0.0 - 1.0, with 0.0 returning black and 1.0 returning the original color. Alpha is unaffected.
+Applies a multiplier to the red, green and blue components of the color to vary the brightness. The brightness argument should be in the range 0.0 - x, with 0.0 returning black and 1.0 returning the original color and values gretaer than 1.0 making the color brighter. Alpha is unaffected.
 
 - (UIColor *)colorBlendedWithColor:(UIColor *)color factor:(CGFloat)factor;
 

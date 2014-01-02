@@ -1,7 +1,7 @@
 //
 //  ColorUtils.m
 //
-//  Version 1.1.1
+//  Version 1.1.2
 //
 //  Created by Nick Lockwood on 19/11/2011.
 //  Copyright (c) 2011 Charcoal Design
@@ -32,6 +32,11 @@
 
 
 #import "ColorUtils.h"
+
+
+#pragma GCC diagnostic ignored "-Wformat-non-iso"
+#pragma GCC diagnostic ignored "-Wconversion"
+#pragma GCC diagnostic ignored "-Wgnu"
 
 
 #import <Availability.h>
@@ -90,7 +95,12 @@
             rgba[3] = components[3];
             break;
         }
-        default:
+        case kCGColorSpaceModelCMYK:
+        case kCGColorSpaceModelDeviceN:
+        case kCGColorSpaceModelIndexed:
+        case kCGColorSpaceModelLab:
+        case kCGColorSpaceModelPattern:
+        case kCGColorSpaceModelUnknown:
         {
         
 #ifdef DEBUG
@@ -226,9 +236,9 @@
 {
     CGFloat rgba[4];
     [self getRGBAComponents:rgba];
-    uint8_t red = rgba[0]*255;
-    uint8_t green = rgba[1]*255;
-    uint8_t blue = rgba[2]*255;
+    uint32_t red = rgba[0]*255;
+    uint32_t green = rgba[1]*255;
+    uint32_t blue = rgba[2]*255;
     return (red << 16) + (green << 8) + blue;
 }
 
@@ -317,7 +327,7 @@
 
 - (instancetype)colorWithBrightness:(CGFloat)brightness
 {
-    brightness = fminf(fmaxf(brightness, 0.0f), 1.0f);
+    brightness = MAX(brightness, 0.0f);
     
     CGFloat rgba[4];
     [self getRGBAComponents:rgba];
@@ -330,7 +340,7 @@
 
 - (instancetype)colorBlendedWithColor:(UIColor *)color factor:(CGFloat)factor
 {
-    factor = fminf(fmaxf(factor, 0.0f), 1.0f);
+    factor = MIN(MAX(factor, 0.0f), 1.0f);
     
     CGFloat fromRGBA[4], toRGBA[4];
     [self getRGBAComponents:fromRGBA];

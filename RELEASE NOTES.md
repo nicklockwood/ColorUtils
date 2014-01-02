@@ -1,3 +1,7 @@
+Version 1.1.2
+
+- Removed upper limit on colorWithBrightness: method.
+
 Version 1.1.1
 
 - Fixed some type mismatch warnings affecting arm64 builds

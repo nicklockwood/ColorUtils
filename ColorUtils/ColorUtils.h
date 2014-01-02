@@ -1,7 +1,7 @@
 //
 //  ColorUtils.h
 //
-//  Version 1.1.1
+//  Version 1.1.2
 //
 //  Created by Nick Lockwood on 19/11/2011.
 //  Copyright (c) 2011 Charcoal Design
@@ -31,7 +31,10 @@
 //
 
 
-#import <UIKit/UIKit.h>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wauto-import"
+#pragma GCC diagnostic ignored "-Wobjc-missing-property-synthesis"
+
 
 @interface UIColor (ColorUtils)
 
@@ -61,3 +64,6 @@
 - (instancetype)colorBlendedWithColor:(UIColor *)color factor:(CGFloat)factor;
 
 @end
+
+
+#pragma GCC diagnostic pop
