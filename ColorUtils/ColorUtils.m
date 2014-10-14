@@ -1,7 +1,7 @@
 //
 //  ColorUtils.m
 //
-//  Version 1.1.2
+//  Version 1.1.3
 //
 //  Created by Nick Lockwood on 19/11/2011.
 //  Copyright (c) 2011 Charcoal Design
@@ -46,6 +46,18 @@
 
 
 @implementation UIColor (ColorUtils)
+
++ (dispatch_queue_t)sharedDispatchQueue
+{
+    static dispatch_queue_t queue;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        queue = dispatch_queue_create("com.charcoaldesign.ColorUtils", DISPATCH_QUEUE_SERIAL);
+    });
+    
+    return queue;
+}
 
 + (NSMutableDictionary *)standardColors
 {
@@ -121,15 +133,18 @@
 {
     name = [name lowercaseString];
     
+    dispatch_sync([self sharedDispatchQueue], ^{
+        
 #ifdef DEBUG
-    
-    //don't allow re-registration
-    NSAssert([self standardColors][name] == nil || [[self standardColors][name] isEquivalentToColor:color],
-             @"Cannot re-register the color '%@' as this is already assigned", name);
-    
+        
+        //don't allow re-registration
+        NSAssert([self standardColors][name] == nil || [[self standardColors][name] isEquivalentToColor:color],
+                 @"Cannot re-register the color '%@' as this is already assigned", name);
+        
 #endif
-
-    [self standardColors][[name lowercaseString]] = color;
+        
+        [self standardColors][[name lowercaseString]] = color;
+    });
 }
 
 + (instancetype)colorWithString:(NSString *)string
@@ -138,14 +153,19 @@
     string = [string lowercaseString];
     
     //try standard colors first
-    UIColor *color = [self standardColors][string];
+    __block UIColor *color = nil;
+    dispatch_sync([self sharedDispatchQueue], ^{
+        
+        color = [self standardColors][string];
+    });
+    
     if (color)
     {
         return color;
     }
 
     //create new instance
-    return [[self alloc] initWithString:string];
+    return [[self alloc] initWithString:string useLookup:NO];
 }
 
 + (instancetype)colorWithRGBValue:(uint32_t)rgb
@@ -160,14 +180,27 @@
 
 - (instancetype)initWithString:(NSString *)string
 {
+    return [self initWithString:string useLookup:YES];
+}
+
+- (instancetype)initWithString:(NSString *)string useLookup:(BOOL)lookup
+{
     //convert to lowercase
     string = [string lowercaseString];
     
-    //try standard colors
-    UIColor *color = [[self class] standardColors][string];
-    if (color)
+    if (lookup)
     {
-        return ((self = color));
+        //try standard colors
+        __block UIColor *color = nil;
+        dispatch_sync([[self class] sharedDispatchQueue], ^{
+            
+            color = [[self class] standardColors][string];
+        });
+        
+        if (color)
+        {
+            return ((self = color));
+        }
     }
     
     //try hex

@@ -11,8 +11,8 @@ Another common problem is that RGBA UIColors are specified using four floating p
 Supported iOS & SDK Versions
 -----------------------------
 
-* Supported build target - iOS 7.0 (Xcode 5.0, Apple LLVM compiler 5.0)
-* Earliest supported deployment target - iOS 5.0
+* Supported build target - iOS 8.0 (Xcode 6.0, Apple LLVM compiler 6.0)
+* Earliest supported deployment target - iOS 6.0
 * Earliest compatible deployment target - iOS 4.3
 
 NOTE: 'Supported' means that the library has been tested with this version. 'Compatible' means that the library should work on this iOS version (i.e. it doesn't rely on any unavailable SDK features) but is no longer being tested for compatibility and may require tweaking or bug fixes to run correctly.
@@ -30,6 +30,12 @@ Installation
 --------------
 
 To use ColorUtils in an app, just drag the ColorUtils.h and .m files into your project.
+
+
+Thread Safety
+---------------
+
+ColorUtils methods should be fully thread-safe, however note that calls to `registerColor:forName:` and `colorWithString:`/`initWithString:` will be queued and may cause deadlock if called concurrently from multiple threads.
 
 
 Properties
@@ -128,3 +134,47 @@ Example
 --------
 
 Most of the methods and properties are fairly self-explanatory, but there is an example included that shows how to set colors by name or with hexadecimal strings.
+
+
+Release notes
+--------------
+
+Version 1.1.3
+
+- Added missing UIKit import statement
+- ColorUtils is now fully thread-safe
+
+Version 1.1.2
+
+- Removed upper limit on colorWithBrightness: method.
+
+Version 1.1.1
+
+- Fixed some type mismatch warnings affecting arm64 builds
+
+Version 1.1
+
+- Now requires ARC
+- Added registerColor:forName: method for adding bespoke named colors
+- Added colorWithBrightness: and colorBlendedWithColor: methods
+- Now complies with -Wextra warning level
+- Added CocoaPods podspec file
+
+Version 1.0.3
+
+- Moved ARCHelper macros out of .h file
+- Renamed class files for future flexibility
+- Updated example for iOS6 and ARC
+
+Version 1.0.2
+
+- Added automatic support for ARC compile targets
+- Now requires Apple LLVM 3.0 compiler target
+
+Version 1.0.1
+
+- Fixed potential crash due to an incorrect retain count when initialising colors using a name string, e.g. 'blue'.
+
+Version 1.0
+
+- Initial release
